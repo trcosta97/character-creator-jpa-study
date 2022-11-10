@@ -32,7 +32,41 @@ public class PlayerDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+	}
+
+	public void updatePlayer(Player player) {
+			
+			conexao = GerenciadorBD.obterConexao();
+			PreparedStatement comandoSQL = null;
+			
+			try {
+				comandoSQL = conexao.prepareStatement("update PLAYER set PLAYERNAME = ? where PLAYERID = ?");
+				comandoSQL.setString(1, player.getPlayerName());
+				comandoSQL.setInt(3, player.getPlayerId());
+				
+				comandoSQL.executeUpdate();
+				conexao.close();
+				comandoSQL.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+			
+	}
+	
+	public void excludePlayer(int id) {
+		conexao = GerenciadorBD.obterConexao();
+		PreparedStatement comandoSQL = null;
 		
-		
+		try {
+			comandoSQL = conexao.prepareStatement("delete from PLAYER where PLAYERID = ?");
+			comandoSQL.setInt(1, id);
+			
+			comandoSQL.executeUpdate();
+			conexao.close();
+			comandoSQL.close();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }

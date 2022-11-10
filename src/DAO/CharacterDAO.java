@@ -48,23 +48,7 @@ public class CharacterDAO {
 		
 	}
 	
-	public void increaseStrenght(int id, int newStatus) {
-		
-		conexao = GerenciadorBD.obterConexao();
-		PreparedStatement comandoSQL = null;
-		
-		try {
-			comandoSQL = conexao.prepareStatement("update char set strenght = ? where idchar = ?");
-			comandoSQL.setInt(1, newStatus);
-			comandoSQL.setInt(2, id);
-			
-			comandoSQL.executeUpdate();
-			conexao.close();
-			comandoSQL.close();
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
-	}
+
 	
 	public void excludeChar(Character character) {
 		
@@ -72,7 +56,7 @@ public class CharacterDAO {
 		PreparedStatement comandoSQL = null;
 		
 		try {
-			comandoSQL = conexao.prepareStatement("delete from character where idChar = ?");
+			comandoSQL = conexao.prepareStatement("delete from CHARACTER where idChar = ?");
 			comandoSQL.setInt(1, character.getCharId());
 			
 			comandoSQL.executeUpdate();
@@ -83,5 +67,170 @@ public class CharacterDAO {
 			e.printStackTrace();
 			}
 	}
+	
+	public void changeStrenght(Character character, int newStatus) {
+		
+		conexao = GerenciadorBD.obterConexao();
+		PreparedStatement comandoSQL = null;
+		
+		try {
+			comandoSQL = conexao.prepareStatement("update CHARACTER set STRENGHT = ? where IDCHAR = ?");
+			comandoSQL.setInt(1, newStatus);
+			comandoSQL.setInt(2, character.getCharId());
+			
+			comandoSQL.executeUpdate();
+			conexao.close();
+			comandoSQL.close();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void changeInt(Character character, int newStatus) {
+		
+		conexao = GerenciadorBD.obterConexao();
+		PreparedStatement comandoSQL = null;
+		
+		try {
+			comandoSQL = conexao.prepareStatement("update CHARACTER set INTELIGENCE = ? where IDCHAR = ?");
+			comandoSQL.setInt(1, newStatus);
+			comandoSQL.setInt(2, character.getCharId());
+			
+			comandoSQL.executeUpdate();
+			conexao.close();
+			comandoSQL.close();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void changeLuck(Character character, int newStatus) {
+			
+		conexao = GerenciadorBD.obterConexao();
+		PreparedStatement comandoSQL = null;
+			
+		try {
+			comandoSQL = conexao.prepareStatement("update CHARACTER set LUCK = ? where IDCHAR = ?");
+			comandoSQL.setInt(1, newStatus);
+			comandoSQL.setInt(2, character.getCharId());
+				
+			comandoSQL.executeUpdate();
+			conexao.close();
+			comandoSQL.close();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	
+	public void changeCharisma(Character character, int newStatus) {
+			
+		conexao = GerenciadorBD.obterConexao();
+		PreparedStatement comandoSQL = null;
+			
+		try {
+			comandoSQL = conexao.prepareStatement("update CHARACTER set CHARISMA = ? where IDCHAR = ?");
+			comandoSQL.setInt(1, newStatus);
+			comandoSQL.setInt(2, character.getCharId());
+				
+			comandoSQL.executeUpdate();
+			conexao.close();
+			comandoSQL.close();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void changeHpPoints(Character character, int newStatus) {
+		
+		conexao = GerenciadorBD.obterConexao();
+		PreparedStatement comandoSQL = null;
+		
+		try {
+			comandoSQL = conexao.prepareStatement("update CHARACTER set HPPOINTS = ? where IDCHAR = ?");
+			comandoSQL.setInt(1, newStatus);
+			comandoSQL.setInt(2, character.getCharId());
+			
+			comandoSQL.executeUpdate();
+			conexao.close();
+			comandoSQL.close();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void changeArmor(Character character, int newStatus) {
+		
+		conexao = GerenciadorBD.obterConexao();
+		PreparedStatement comandoSQL = null;
+		
+		try {
+			comandoSQL = conexao.prepareStatement("update CHARACTER set ARMOR = ? where IDCHAR = ?");
+			comandoSQL.setInt(1, newStatus);
+			comandoSQL.setInt(2, character.getCharId());
+			
+			comandoSQL.executeUpdate();
+			conexao.close();
+			comandoSQL.close();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void changeRace(Character character, RacesEnum race) {
+		
+		conexao = GerenciadorBD.obterConexao();
+		PreparedStatement comandoSQL = null;
+		
+		try {
+			comandoSQL = conexao.prepareStatement("update CHARACTER set CHARRACE = ? where IDCHAR = ?");
+			comandoSQL.setString(1, race.toString());
+			comandoSQL.setInt(2, character.getCharId());
+			
+			comandoSQL.executeUpdate();
+			conexao.close();
+			comandoSQL.close();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void changeSpeed(Character character, int newStatus) {
+		
+		conexao = GerenciadorBD.obterConexao();
+		PreparedStatement comandoSQL = null;
+		
+		try {
+			comandoSQL = conexao.prepareStatement("update CHARACTER set SPEED = ? where IDCHAR = ?");
+			comandoSQL.setInt(1, newStatus);
+			comandoSQL.setInt(2, character.getCharId());
+			
+			comandoSQL.executeUpdate();
+			conexao.close();
+			comandoSQL.close();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void levelUp (Character character) {
+		conexao = GerenciadorBD.obterConexao();
+		PreparedStatement comandoSQL = null;
+		
+		try {
+			comandoSQL = conexao.prepareStatement("update CHARACTER set CHARLEVEL = ? where IDCHAR = ?");
+			comandoSQL.setInt(1, character.getLevel() + 1);
+			comandoSQL.setInt(2, character.getCharId());
+			
+			comandoSQL.executeUpdate();
+			conexao.close();
+			comandoSQL.close();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
 	
 }
