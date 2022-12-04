@@ -1,36 +1,39 @@
 package test;
 
-import DAO.CharacterDAO;
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import DAO.ConnectionFactory;
+import DAO.HeroDAO;
 import DAO.PlayerDAO;
 import enums.RacesEnum;
-import model.Character;
+import model.Hero;
 import model.Player;
 
 public class testeCharacter {
-	
-	public static void main(String[] args) {
-		Player p1 = new Player(01, "Thiago");
-		Character c1 = new Character();
+	public static void main(String[] args) throws SQLException {
 		
-		c1.setCharId(01);
-		c1.setCharName("Talion");
-		c1.setStrenght(10);
-		c1.setInteligence(10);
-		c1.setLuck(0);
-		c1.setCharisma(0);
-		c1.setHpPoints(100);
-		c1.setArmor(10);
-		c1.setPlayer(p1);
-		c1.setCharRace(RacesEnum.HUMAN);
-		c1.setSpeed(10);
-		c1.setLevel(1);
+		ConnectionFactory factory = new ConnectionFactory();
+		Connection connection = factory.recuperarConexao();
 		
-		CharacterDAO cDAO = new CharacterDAO();
-		PlayerDAO pDAO = new PlayerDAO();
-//		pDAO.includePlayer(p1);
-		cDAO.includeChar(c1);
+		Player p1 = new Player("Thiago");
+		PlayerDAO pDAO = new PlayerDAO(connection);
 		
-	}
+		Hero h1 = new Hero("Kaaras", 1, 10, 50, 10, 2, RacesEnum.ELF);
+		HeroDAO hDAO = new HeroDAO(connection);
+		
+//		pDAO.include(p1);
+		hDAO.include(h1);
 	
 	
+	
+	
+
+		
+		
+		
+	}	
 }
+	
+	
+

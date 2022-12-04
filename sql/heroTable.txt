@@ -1,0 +1,13 @@
+CREATE TABLE Hero (
+	HeroId INT AUTO_INCREMENT,
+	HeroName VARCHAR(50) NOT NULL,
+	level INT,
+	strenght INT,
+	hp INT,
+	speed INT,
+	PlayerID INT,
+	heroRace VARCHAR(15),
+	PRIMARY KEY (HeroId),
+	FOREIGN KEY (PlayerID) REFERENCES Player(PlayerID)
+	) 
+	Engine = InnoDB;

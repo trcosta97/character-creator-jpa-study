@@ -1,72 +1,69 @@
 package DAO;
 
 import java.sql.Connection;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
-import model.Character;
 import model.Player;
-import enums.RacesEnum;
 
 public class PlayerDAO {
 
-	private Connection conexao;
+	private Connection connection;
 	
-	public void includePlayer(Player player) {
-		conexao = GerenciadorBD.obterConexao();
-		PreparedStatement comandoSQL = null;
-		
-		try {
-			comandoSQL = conexao.prepareStatement("insert into PLAYER(PLAYERID, PLAYERNAME) values(?,?)");
-			comandoSQL.setInt(1, player.getPlayerId());
-			comandoSQL.setString(2, player.getPlayerName());
-		
-			comandoSQL.executeUpdate();
-			comandoSQL.close();
-			conexao.close();
-		
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+	public PlayerDAO(Connection connection) {
+		this.connection = connection;
 	}
-
-	public void updatePlayer(Player player) {
+	
+	public void include(Player player) throws SQLException{
+		String sql = "INSERT INTO PLAYER (playername) VALUES (?)";
+		
+		try(PreparedStatement pstm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
 			
-			conexao = GerenciadorBD.obterConexao();
-			PreparedStatement comandoSQL = null;
+			pstm.setString(1, player.getPlayerName());
 			
-			try {
-				comandoSQL = conexao.prepareStatement("update PLAYER set PLAYERNAME = ? where PLAYERID = ?");
-				comandoSQL.setString(1, player.getPlayerName());
-				comandoSQL.setInt(3, player.getPlayerId());
-				
-				comandoSQL.executeUpdate();
-				conexao.close();
-				comandoSQL.close();
-			}catch(SQLException e) {
-				e.printStackTrace();
+			pstm.execute();
+			
+			try(ResultSet rst = pstm.getGeneratedKeys()){
+				while(rst.next()) {
+					player.setPlayerId(rst.getInt(1));
+				}
 			}
-			
-	}
-	
-	public void excludePlayer(int id) {
-		conexao = GerenciadorBD.obterConexao();
-		PreparedStatement comandoSQL = null;
-		
-		try {
-			comandoSQL = conexao.prepareStatement("delete from PLAYER where PLAYERID = ?");
-			comandoSQL.setInt(1, id);
-			
-			comandoSQL.executeUpdate();
-			conexao.close();
-			comandoSQL.close();
-		}catch(SQLException e) {
-			e.printStackTrace();
 		}
 	}
+	
+	public List<Player> listar() throws SQLException{
+		
+		List<Player> lista = new ArrayList<>();
+		
+		String sql = "SELECT * FROM player";
+		
+		try(PreparedStatement pstm = connection.prepareStatement(sql)){
+			pstm.execute();
+			try(ResultSet rst = pstm.getResultSet()){
+				while(rst.next()) {
+					Player player = new Player (rst.getString(1));
+					lista.add(player);
+				}
+			}		
+		}
+		return lista;
+	}
+
+	public void delete(int id) throws SQLException{
+		String sql = "DELETE FROM player WHERE PlayerID = ?";
+		
+		try(PreparedStatement stm = connection.prepareStatement(sql)){
+			stm.setInt(1, id);
+			stm.execute();
+		
+		Integer linhasModificadas = stm.getUpdateCount();
+		System.out.println("O número de linhas modificadas foi de " + linhasModificadas);
+		
+		}
+	}
+
 }
