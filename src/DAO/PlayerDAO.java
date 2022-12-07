@@ -53,8 +53,8 @@ public class PlayerDAO {
 		return lista;
 	}
 
-	public void delete(int id) throws SQLException{
-		String sql = "DELETE FROM player WHERE PlayerID = ?";
+	public void deleteById(int id) throws SQLException{
+		String sql = "DELETE FROM player WHERE playerid = ?";
 		
 		try(PreparedStatement stm = connection.prepareStatement(sql)){
 			stm.setInt(1, id);
