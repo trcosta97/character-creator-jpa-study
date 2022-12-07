@@ -16,15 +16,19 @@ public class testeCharacter {
 		ConnectionFactory factory = new ConnectionFactory();
 		Connection connection = factory.recuperarConexao();
 		
-//		Player p1 = new Player("Thiago");
+		Player p1 = new Player("Thiago");
 		PlayerDAO pDAO = new PlayerDAO(connection);
 //		
-		Hero h1 = new Hero("Kaaras", 1, 10, 50, 10, 2, RacesEnum.ELF);
+		Hero h1 = new Hero("Kaaras", 1, 10, 50, 10, 3, RacesEnum.ELF);
+		Hero h2 = new Hero("Jiiuj", 1, 10, 50, 10, 3, RacesEnum.FAIRY);
 		HeroDAO hDAO = new HeroDAO(connection);
 		
-//		hDAO.include(h1);
+//		pDAO.include(p1);
+//		hDAO.include(h2);		
+//		pDAO.deleteById(2);
 		
-		pDAO.deleteById(2);
+		hDAO.delete(5);
+		System.out.println(hDAO.listar());
 
 	
 	

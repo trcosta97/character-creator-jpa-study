@@ -8,6 +8,6 @@ CREATE TABLE Hero (
 	PlayerID INT,
 	heroRace VARCHAR(15),
 	PRIMARY KEY (HeroId),
-	FOREIGN KEY (PlayerID) REFERENCES Player(PlayerID)
+	FOREIGN KEY (PlayerID) REFERENCES Player(PlayerID) ON DELETE CASCADE
 	) 
 	Engine = InnoDB;

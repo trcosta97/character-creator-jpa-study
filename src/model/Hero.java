@@ -13,7 +13,9 @@ public class Hero {
 	private RacesEnum heroRace;
 	
 	
-	
+	public Hero() {
+		
+	}
 	
 	public Hero(String charName, int level, int strenght, int hp, int speed, int player, RacesEnum charRace, int charId) {
 		super();
@@ -40,59 +42,72 @@ public class Hero {
 		this.heroRace = charRace;
 	}
 
+	
+	
+	public int getHeroId() {
+		return HeroId;
+	}
+
+	public void setHeroId(int heroId) {
+		HeroId = heroId;
+	}
+
+	public String getHeroName() {
+		return HeroName;
+	}
+
+	public void setHeroName(String heroName) {
+		HeroName = heroName;
+	}
+
 	public int getLevel() {
 		return level;
 	}
+
 	public void setLevel(int level) {
 		this.level = level;
 	}
-	
-	public int getSpeed() {
-		return speed;
-	}
-	public void setSpeed(int speed) {
-		this.speed = speed;
-	}
-	
-	public int getCharId() {
-		return HeroId;
-	}
-	public void setCharId(int charId) {
-		this.HeroId = charId;
-	}
-	public String getCharName() {
-		return HeroName;
-	}
-	public void setCharName(String charName) {
-		this.HeroName = charName;
-	}
+
 	public int getStrenght() {
 		return strenght;
 	}
+
 	public void setStrenght(int strenght) {
 		this.strenght = strenght;
 	}
-	
+
 	public int getHp() {
 		return hp;
 	}
-	public void setHp(int hpPoints) {
-		this.hp = hpPoints;
+
+	public void setHp(int hp) {
+		this.hp = hp;
 	}
-	
-	public int getPlayer() {
-		return this.playerID;
+
+	public int getSpeed() {
+		return speed;
 	}
-	public void setPlayer(int player) {
-		this.playerID = player;
+
+	public void setSpeed(int speed) {
+		this.speed = speed;
 	}
-	public RacesEnum getCharRace() {
+
+	public int getPlayerID() {
+		return playerID;
+	}
+
+	public void setPlayerID(int playerID) {
+		this.playerID = playerID;
+	}
+
+	public RacesEnum getHeroRace() {
 		return heroRace;
 	}
-	public void setCharRace(RacesEnum charRace) {
-		this.heroRace = charRace;
+
+	public void setHeroRace(RacesEnum heroRace) {
+		this.heroRace = heroRace;
 	}
-	
+
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
