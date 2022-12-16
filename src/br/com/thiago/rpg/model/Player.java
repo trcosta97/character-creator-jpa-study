@@ -14,10 +14,7 @@ public class Player {
 	private Long playerId;
 	private String playerName;
 
-	
-	
 	public Player() {
-
 	}
 	
 	public Player(Long playerId, String playerNome) {

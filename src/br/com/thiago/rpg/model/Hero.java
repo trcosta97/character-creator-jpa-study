@@ -1,23 +1,33 @@
 package br.com.thiago.rpg.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
-
+@Entity
+@Table(name="hero")
 public class Hero {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long HeroId;
 	private String HeroName;
 	private int level;
 	private int strenght;
 	private int hp;
 	private int speed;
-	private int playerID;
-	private Races heroRace;
+	@ManyToOne
+	private Player playerID;
+	@ManyToOne
+	private Race RaceId;
 	
 	
 	public Hero() {
-		
 	}
 	
-	public Hero(String charName, int level, int strenght, int hp, int speed, int player, Races charRace, Long HeroId) {
+	public Hero(String charName, int level, int strenght, int hp, int speed, Player player, Race RaceId, Long HeroId) {
 		super();
 		this.HeroName = charName;
 		this.level = level;
@@ -26,12 +36,12 @@ public class Hero {
 	
 		this.speed = speed;
 		this.playerID = player;
-		this.heroRace = charRace;
+		this.RaceId = RaceId;
 		this.HeroId = HeroId;
 	}
 	
 	
-	public Hero(String charName, int level, int strenght, int hp, int speed, int playerId, Races charRace) {
+	public Hero(String charName, int level, int strenght, int hp, int speed, Player playerId,Race RaceId) {
 		super();
 		this.HeroName = charName;
 		this.level = level;
@@ -39,7 +49,7 @@ public class Hero {
 		this.hp = hp;
 		this.speed = speed;
 		this.playerID = playerId;
-		this.heroRace = charRace;
+		this.RaceId = RaceId;
 	}
 
 	
@@ -92,20 +102,13 @@ public class Hero {
 		this.speed = speed;
 	}
 
-	public int getPlayerID() {
-		return playerID;
+
+	public Race getHeroRace() {
+		return RaceId;
 	}
 
-	public void setPlayerID(int playerID) {
-		this.playerID = playerID;
-	}
-
-	public Races getHeroRace() {
-		return heroRace;
-	}
-
-	public void setHeroRace(Races heroRace) {
-		this.heroRace = heroRace;
+	public void setHeroRace(Race RaceId) {
+		this.RaceId = RaceId;
 	}
 
 	@Override
@@ -116,7 +119,7 @@ public class Hero {
 				"\nPlayer ID: " + this.playerID +
 				"\nName: " + this.HeroName +
 				"\nLevel: " + this.level +
-				"\nRace: " + this.heroRace +
+				"\nRace: " + this.RaceId +
 				"\nHP: " + this.hp +
 				"\nStrenght: " + this.strenght +
 				"\nSpeed: " + this.speed +
