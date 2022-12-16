@@ -1,7 +1,17 @@
-package model;
+package br.com.thiago.rpg.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="player")
 public class Player {
-	private int playerId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long playerId;
 	private String playerName;
 
 	
@@ -10,7 +20,7 @@ public class Player {
 
 	}
 	
-	public Player(int playerId, String playerNome) {
+	public Player(Long playerId, String playerNome) {
 		this.playerId = playerId;
 		this.playerName = playerNome;
 	}
@@ -19,10 +29,10 @@ public class Player {
 		this.playerName = playerNome;
 	}
 	
-	public int getPlayerId() {
+	public Long getPlayerId() {
 		return playerId;
 	}
-	public void setPlayerId(int playerId) {
+	public void setPlayerId(Long playerId) {
 		this.playerId = playerId;
 	}
 	public String getPlayerName() {

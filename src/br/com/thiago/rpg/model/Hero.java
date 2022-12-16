@@ -1,23 +1,23 @@
-package model;
+package br.com.thiago.rpg.model;
 
-import enums.RacesEnum;
+
 
 public class Hero {
-	private int HeroId;
+	private Long HeroId;
 	private String HeroName;
 	private int level;
 	private int strenght;
 	private int hp;
 	private int speed;
 	private int playerID;
-	private RacesEnum heroRace;
+	private Races heroRace;
 	
 	
 	public Hero() {
 		
 	}
 	
-	public Hero(String charName, int level, int strenght, int hp, int speed, int player, RacesEnum charRace, int charId) {
+	public Hero(String charName, int level, int strenght, int hp, int speed, int player, Races charRace, Long HeroId) {
 		super();
 		this.HeroName = charName;
 		this.level = level;
@@ -27,11 +27,11 @@ public class Hero {
 		this.speed = speed;
 		this.playerID = player;
 		this.heroRace = charRace;
-		this.HeroId = charId;
+		this.HeroId = HeroId;
 	}
 	
 	
-	public Hero(String charName, int level, int strenght, int hp, int speed, int playerId, RacesEnum charRace) {
+	public Hero(String charName, int level, int strenght, int hp, int speed, int playerId, Races charRace) {
 		super();
 		this.HeroName = charName;
 		this.level = level;
@@ -44,11 +44,11 @@ public class Hero {
 
 	
 	
-	public int getHeroId() {
+	public Long getHeroId() {
 		return HeroId;
 	}
 
-	public void setHeroId(int heroId) {
+	public void setHeroId(Long heroId) {
 		HeroId = heroId;
 	}
 
@@ -100,11 +100,11 @@ public class Hero {
 		this.playerID = playerID;
 	}
 
-	public RacesEnum getHeroRace() {
+	public Races getHeroRace() {
 		return heroRace;
 	}
 
-	public void setHeroRace(RacesEnum heroRace) {
+	public void setHeroRace(Races heroRace) {
 		this.heroRace = heroRace;
 	}
 
