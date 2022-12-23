@@ -3,9 +3,9 @@ package br.com.thiago.rpg.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
 import br.com.thiago.rpg.model.Hero;
-import br.com.thiago.rpg.model.Race;
 
 public class HeroDao {
 	
@@ -41,5 +41,25 @@ public class HeroDao {
 	public List<Hero> buscarPorId(Long heroId){
 		String jpql = "SELECT hero FROM Hero hero where Heroid = :heroId";
 		return em.createQuery(jpql, Hero.class).setParameter("heroId", heroId).getResultList();
+	}
+	
+	public List<Hero> buscarPorParametro(String heroName, Long heroId){
+		String jpql = "SELECT h FROM Hero p WHERE 1=1 ";
+		if (heroName != null && !heroName.trim().isEmpty()) {
+			jpql = "AND h.HeroName = :heroName ";
+		}
+		if (heroId != null) {
+			jpql = "AND h.heroId = :heroId ";
+		}
+		TypedQuery<Hero> query = em.createQuery(jpql, Hero.class);
+		
+		if (heroName != null && !heroName.trim().isEmpty()) {
+			query.setParameter("heroName", heroName);
+		}
+		if (heroId != null) {
+			query.setParameter("heroId", heroId);
+		}
+		return query.getResultList();
+				
 	}
 }

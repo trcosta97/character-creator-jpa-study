@@ -1,6 +1,7 @@
 package br.com.thiago.rpg.model;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,9 +19,9 @@ public class Hero {
 	private int strenght;
 	private int hp;
 	private int speed;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Player playerID;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Race RaceId;
 	
 	
