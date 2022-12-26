@@ -1,5 +1,6 @@
 package br.com.thiago.rpg.model;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -13,12 +14,10 @@ import javax.persistence.Table;
 public class Hero {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long HeroId;
-	private String HeroName;
-	private int level;
-	private int strenght;
-	private int hp;
-	private int speed;
+	private Long heroId;
+	private String heroName;
+	@Embedded
+	private HeroStatus heroStatus;
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Player playerID;
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -28,27 +27,20 @@ public class Hero {
 	public Hero() {
 	}
 	
-	public Hero(String charName, int level, int strenght, int hp, int speed, Player player, Race RaceId, Long HeroId) {
+	public Hero(String charName, HeroStatus heroStatus, Player player, Race RaceId, Long HeroId) {
 		super();
-		this.HeroName = charName;
-		this.level = level;
-		this.strenght = strenght;
-		this.hp = hp;
-	
-		this.speed = speed;
+		this.heroName = charName;
+		this.heroStatus = heroStatus;
 		this.playerID = player;
 		this.RaceId = RaceId;
-		this.HeroId = HeroId;
+		this.heroId = HeroId;
 	}
 	
 	
-	public Hero(String charName, int level, int strenght, int hp, int speed, Player playerId,Race RaceId) {
+	public Hero(String charName, HeroStatus heroStatus, Player playerId,Race RaceId) {
 		super();
-		this.HeroName = charName;
-		this.level = level;
-		this.strenght = strenght;
-		this.hp = hp;
-		this.speed = speed;
+		this.heroName = charName;
+		this.heroStatus = heroStatus;
 		this.playerID = playerId;
 		this.RaceId = RaceId;
 	}
@@ -56,51 +48,19 @@ public class Hero {
 	
 	
 	public Long getHeroId() {
-		return HeroId;
+		return heroId;
 	}
 
 	public void setHeroId(Long heroId) {
-		HeroId = heroId;
+		heroId = heroId;
 	}
 
 	public String getHeroName() {
-		return HeroName;
+		return heroName;
 	}
 
 	public void setHeroName(String heroName) {
-		HeroName = heroName;
-	}
-
-	public int getLevel() {
-		return level;
-	}
-
-	public void setLevel(int level) {
-		this.level = level;
-	}
-
-	public int getStrenght() {
-		return strenght;
-	}
-
-	public void setStrenght(int strenght) {
-		this.strenght = strenght;
-	}
-
-	public int getHp() {
-		return hp;
-	}
-
-	public void setHp(int hp) {
-		this.hp = hp;
-	}
-
-	public int getSpeed() {
-		return speed;
-	}
-
-	public void setSpeed(int speed) {
-		this.speed = speed;
+		heroName = heroName;
 	}
 
 
@@ -116,14 +76,10 @@ public class Hero {
 	public String toString() {
 		// TODO Auto-generated method stub
 		return  "------------------------" +
-				"\nID: " + this.HeroId +
+				"\nID: " + this.heroId +
 				"\nPlayer ID: " + this.playerID +
-				"\nName: " + this.HeroName +
-				"\nLevel: " + this.level +
+				"\nName: " + this.heroName +
 				"\nRace: " + this.RaceId +
-				"\nHP: " + this.hp +
-				"\nStrenght: " + this.strenght +
-				"\nSpeed: " + this.speed +
 				"\n------------------------";
 				
 				
